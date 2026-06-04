@@ -29,8 +29,9 @@
     }
   </script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    p, h1, h2, h3, h4, span { overflow-wrap: break-word; }
 
     /* Custom shadow utilities */
     .shadow-card {
@@ -155,7 +156,7 @@
     .logo-img { max-height: 130px; width: auto; }
 
     @media (max-width: 640px) {
-      .logo-img { max-height: 90px; }
+      .logo-img { max-height: 64px; max-width: 180px; width: auto; }
       .trust-item + .trust-item { border-left: none; border-top: 1px solid rgba(10,31,59,0.12); }
     }
 
@@ -191,7 +192,7 @@
 <!-- ═══════════════════════════════════════════
      STICKY HEADER
 ═══════════════════════════════════════════ -->
-<header id="site-header" class="sticky top-0 z-50 bg-navy">
+<header id="site-header" class="sticky top-0 z-50 bg-navy overflow-hidden">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between gap-4">
     <!-- Logo -->
     <a href="/" aria-label="Roland's Plumbing Service — Home">
@@ -218,7 +219,7 @@
 <!-- ═══════════════════════════════════════════
      HERO SECTION
 ═══════════════════════════════════════════ -->
-<section class="relative flex items-center justify-center overflow-hidden"
+<section class="relative flex items-center justify-center"
          style="min-height: min(100vh, 720px); background-image: url('brand assets/IMG_8853.webp'); background-size: cover; background-position: center 30%;">
 
   <!-- Gradient overlay -->
@@ -233,7 +234,7 @@
        style="background: radial-gradient(circle, #E8820C 0%, transparent 70%); transform: translate(-30%, 30%);"></div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 py-20 sm:py-24 text-center w-full">
+  <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 py-20 sm:py-24 w-full" style="text-align:center;">
     <!-- Badge -->
     <div class="inline-flex items-center gap-2 bg-amber/20 border border-amber/40 text-amber text-sm font-body font-medium px-4 py-1.5 rounded-full mb-6">
       <span>⭐</span>
@@ -249,8 +250,8 @@
     </h1>
 
     <!-- Subheadline -->
-    <p class="text-white/80 text-lg sm:text-xl font-body leading-relaxed mb-10 max-w-2xl mx-auto" style="line-height:1.7;">
-      Fast, reliable service for repairs, installs, and emergencies.<br class="hidden sm:block" />
+    <p class="text-white/80 font-body mb-10 mx-auto" style="font-size: clamp(0.9rem, 3.8vw, 1.25rem); line-height:1.7; max-width:36rem;">
+      Fast, reliable service for repairs, installs, and emergencies.
       Family-owned. Licensed. Ready when you need us most.
     </p>
 
