@@ -762,42 +762,60 @@
     </div>
 
     <!-- Chat body -->
-    <div id="chat-body" class="px-5 py-5 flex flex-col gap-4 bg-gray-bg" style="min-height: 220px;">
+    <div id="chat-body" class="px-4 py-4 flex flex-col gap-3 bg-gray-bg overflow-y-auto" style="min-height: 260px; max-height: 420px;">
 
       <!-- Greeting bubble -->
       <div class="flex items-start gap-2.5">
         <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold font-display">F</div>
-        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
+        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm" style="max-width:85%;">
           <p class="text-navy font-body text-sm" style="line-height:1.6;">
-            Hi! I'm Flo, Roland's virtual assistant. How can I help you today?
+            Hi! I'm Flo, Roland's virtual assistant. What can I help you with today?
           </p>
         </div>
       </div>
 
-      <!-- Quick reply buttons -->
-      <div id="chat-quick-replies" class="flex flex-col gap-2 mt-1">
-        <button class="chat-quick-btn border border-amber/40 text-amber bg-white font-body font-medium text-sm px-4 py-2.5 rounded-xl text-left hover:bg-amber hover:text-white hover:border-amber"
-                data-action="quote" style="transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;">
-          💬 Get a Quote
+      <!-- Quick reply buttons — always visible on open -->
+      <div id="chat-quick-replies" class="flex flex-col gap-2">
+        <button class="chat-quick-btn border border-amber/50 text-amber bg-white font-body font-medium text-sm px-4 py-3 rounded-xl text-left flex items-center gap-3"
+                data-action="emergency">
+          <span class="text-base leading-none">🚨</span>
+          <span>I have an urgent problem</span>
         </button>
-        <button class="chat-quick-btn border border-amber/40 text-amber bg-white font-body font-medium text-sm px-4 py-2.5 rounded-xl text-left hover:bg-amber hover:text-white hover:border-amber"
-                data-action="schedule" style="transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;">
-          📅 Schedule a Service
+        <button class="chat-quick-btn border border-amber/50 text-amber bg-white font-body font-medium text-sm px-4 py-3 rounded-xl text-left flex items-center gap-3"
+                data-action="quote">
+          <span class="text-base leading-none">📋</span>
+          <span>Request a free estimate</span>
         </button>
-        <button class="chat-quick-btn border border-amber/40 text-amber bg-white font-body font-medium text-sm px-4 py-2.5 rounded-xl text-left hover:bg-amber hover:text-white hover:border-amber"
-                data-action="ask" style="transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;">
-          ❓ Ask a Question
+        <button class="chat-quick-btn border border-amber/50 text-amber bg-white font-body font-medium text-sm px-4 py-3 rounded-xl text-left flex items-center gap-3"
+                data-action="schedule">
+          <span class="text-base leading-none">📅</span>
+          <span>Schedule a service call</span>
+        </button>
+        <button class="chat-quick-btn border border-amber/50 text-amber bg-white font-body font-medium text-sm px-4 py-3 rounded-xl text-left flex items-center gap-3"
+                data-action="drain">
+          <span class="text-base leading-none">🚿</span>
+          <span>Drain or clog issue</span>
+        </button>
+        <button class="chat-quick-btn border border-amber/50 text-amber bg-white font-body font-medium text-sm px-4 py-3 rounded-xl text-left flex items-center gap-3"
+                data-action="waterheater">
+          <span class="text-base leading-none">🔥</span>
+          <span>Water heater problem</span>
+        </button>
+        <button class="chat-quick-btn border border-amber/50 text-amber bg-white font-body font-medium text-sm px-4 py-3 rounded-xl text-left flex items-center gap-3"
+                data-action="ask">
+          <span class="text-base leading-none">💬</span>
+          <span>Ask something else</span>
         </button>
       </div>
 
-      <!-- Ask input (hidden until "Ask a Question" clicked) -->
-      <div id="chat-ask-input" class="hidden flex gap-2 mt-1">
+      <!-- Text input — hidden until needed -->
+      <div id="chat-ask-input" style="display:none;" class="gap-2 mt-1">
         <input type="text" placeholder="Type your question…"
-               class="flex-1 border border-navy/20 rounded-xl px-3 py-2.5 text-navy font-body text-sm focus:outline-none focus:border-amber"
+               class="w-full border border-navy/20 rounded-xl px-3 py-2.5 text-navy font-body text-sm focus:outline-none focus:border-amber mb-2"
                style="font-size:14px;" id="chat-input-field" />
         <button id="chat-send"
-                class="bg-amber text-white rounded-xl px-3 py-2.5 font-body font-medium text-sm hover:bg-amber-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
-                style="transition: background-color 0.15s ease; flex-shrink:0;">
+                class="w-full bg-amber text-white rounded-xl px-3 py-2.5 font-body font-semibold text-sm hover:bg-amber-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
+                style="transition: background-color 0.15s ease;">
           Send
         </button>
       </div>
@@ -880,21 +898,67 @@
   fab.addEventListener('click', toggleChat);
   closeBtn.addEventListener('click', toggleChat);
 
+  // Show text input + scroll body
+  function showChatInput() {
+    const askInput = document.getElementById('chat-ask-input');
+    askInput.style.display = 'flex';
+    askInput.style.flexDirection = 'column';
+    document.getElementById('chat-body').scrollTop = 9999;
+    setTimeout(() => document.getElementById('chat-input-field').focus(), 50);
+  }
+
+  // Add a user-style bubble for the quick-reply label
+  function addUserChip(label) {
+    const body = document.getElementById('chat-body');
+    const el = document.createElement('div');
+    el.className = 'flex justify-end';
+    el.innerHTML = `<div class="bg-amber text-white rounded-2xl rounded-tr-sm px-4 py-2.5 font-body text-sm font-medium">${label}</div>`;
+    body.insertBefore(el, document.getElementById('chat-ask-input'));
+    body.scrollTop = 9999;
+  }
+
   // Quick reply actions
   document.querySelectorAll('[data-action]').forEach(btn => {
     btn.addEventListener('click', function() {
       const action = this.dataset.action;
+      const label = this.querySelector('span:last-child').textContent.trim();
+
+      // Hide quick-reply panel after selection
+      document.getElementById('chat-quick-replies').style.display = 'none';
+
+      // Show what the user "said"
+      addUserChip(label);
+
       if (action === 'quote' || action === 'schedule') {
-        toggleChat();
+        // Flo responds then scrolls to form
+        const body = document.getElementById('chat-body');
+        const typing = document.createElement('div');
+        typing.className = 'flex items-start gap-2.5'; typing.id = 'flo-typing';
+        typing.innerHTML = `<div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold font-display">F</div><div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm"><div class="flex gap-1 items-center h-4"><span class="w-2 h-2 bg-navy/30 rounded-full animate-bounce" style="animation-delay:0s"></span><span class="w-2 h-2 bg-navy/30 rounded-full animate-bounce" style="animation-delay:0.15s"></span><span class="w-2 h-2 bg-navy/30 rounded-full animate-bounce" style="animation-delay:0.30s"></span></div></div>`;
+        body.insertBefore(typing, document.getElementById('chat-ask-input'));
+        body.scrollTop = 9999;
         setTimeout(() => {
-          document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 200);
+          const t = document.getElementById('flo-typing'); if (t) t.remove();
+          addBotBubble(`Sure thing! Fill out the quick form below and Roland's team will follow up within 1 business hour. You can also call us directly at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a>.`);
+          showChatInput();
+          setTimeout(() => { toggleChat(); document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 1200);
+        }, 800);
+
+      } else if (action === 'emergency') {
+        addBotBubble(floReply('my pipe is leaking and flooding'));
+        showChatInput();
+
+      } else if (action === 'drain') {
+        addBotBubble(floReply('my drain is clogged and slow'));
+        showChatInput();
+
+      } else if (action === 'waterheater') {
+        addBotBubble(floReply('my water heater is not working'));
+        showChatInput();
+
       } else if (action === 'ask') {
-        document.getElementById('chat-quick-replies').classList.add('hidden');
-        const askInput = document.getElementById('chat-ask-input');
-        askInput.classList.remove('hidden');
-        askInput.classList.add('flex');
-        document.getElementById('chat-input-field').focus();
+        addBotBubble(`Of course! What\'s going on? Type your question below and I\'ll do my best to help.`);
+        showChatInput();
       }
     });
   });
