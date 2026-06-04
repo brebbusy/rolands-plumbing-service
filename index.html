@@ -766,7 +766,7 @@
 
       <!-- Greeting bubble -->
       <div class="flex items-start gap-2.5">
-        <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">R</div>
+        <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold font-display">F</div>
         <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
           <p class="text-navy font-body text-sm" style="line-height:1.6;">
             Hi! I'm Flo, Roland's virtual assistant. How can I help you today?
@@ -899,6 +899,102 @@
     });
   });
 
+  // ── Flo: intent-based response engine ───────────
+  function floReply(msg) {
+    const q = msg.toLowerCase();
+
+    const match = (keywords) => keywords.some(k => q.includes(k));
+
+    // Emergency / active problem
+    if (match(['leak','leaking','burst','flood','flooding','water everywhere','gushing','overflow','overflowing','water on floor','pipe broke','pipe burst','sewage backup','sewage','sewer','backed up','no water','water off'])) {
+      if (match(['leak','leaking','drip','dripping','slow drip'])) {
+        return `Leaks can sneak up on you fast! For an active leak, shut off the water supply valve under the sink (or your main shutoff if it's a burst pipe) right away to limit damage. Then call Roland's team at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> — we offer same-day service and can get someone out to you quickly.`;
+      }
+      return `That sounds urgent. First, turn off your main water shutoff valve to stop the damage. Then call Roland's team immediately at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> — we handle emergencies and can dispatch same-day. Do not use any fixtures until the issue is assessed.`;
+    }
+
+    // Drain / clog
+    if (match(['drain','clog','clogged','slow drain','backup','backed up','sink won\'t drain','tub won\'t drain','shower drain','garbage disposal'])) {
+      return `Sounds like your drain might be throwing a little party in there. Slow drains and clogs are usually caused by grease, hair, or buildup — and they get worse the longer they sit. Roland's team can clear it out fast with professional equipment. Want to <a href="#quote" class="text-amber font-semibold underline">schedule a service call</a> or give us a ring at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a>?`;
+    }
+
+    // Water heater
+    if (match(['water heater','hot water','no hot water','heater','tankless','popping noise','rumbling','water not hot','lukewarm','cold water'])) {
+      return `Water heater trouble is never fun, especially in the middle of a shower. Whether it's making noise, not heating, or you need a full replacement, Roland's team handles both traditional and tankless units. Same-day service is often available. Ready to get it looked at? Call <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or <a href="#quote" class="text-amber font-semibold underline">request a free estimate</a>.`;
+    }
+
+    // Toilet
+    if (match(['toilet','running toilet','won\'t flush','flush','clogged toilet','overflowing toilet'])) {
+      return `A running toilet can waste hundreds of gallons a day — definitely worth fixing soon. Most of the time it's the flapper or fill valve, but it's worth having a pro take a look to be sure. Roland's team can diagnose and fix it in one visit. Want to <a href="#quote" class="text-amber font-semibold underline">book a service</a>?`;
+    }
+
+    // Low water pressure
+    if (match(['water pressure','low pressure','pressure','weak water','trickle'])) {
+      return `Low water pressure can point to a few things — a partially closed valve, buildup in the pipes, or a deeper issue. Roland's team can run a quick assessment to pinpoint the cause. Give us a call at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or <a href="#quote" class="text-amber font-semibold underline">submit a request</a> and we'll follow up.`;
+    }
+
+    // Slab leak
+    if (match(['slab','slab leak','under the floor','foundation','damp floor','hot floor','warm floor'])) {
+      return `Slab leaks are serious and need attention right away — they can cause major structural damage if left unchecked. Signs include a warm or damp spot on the floor, a high water bill, or the sound of running water when everything is off. Roland's team is trained in slab leak detection. Call <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> to get someone out as soon as possible.`;
+    }
+
+    // Pipe / re-piping
+    if (match(['pipe','pipes','piping','repiping','copper','pex','pvc','corroded','rusty water','discolored water'])) {
+      return `Pipe issues can range from a simple fix to a full repipe, depending on the age and condition of your plumbing. Roland's team can assess what you're dealing with and give you a clear picture before any work starts. Call <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or <a href="#quote" class="text-amber font-semibold underline">request a free estimate</a>.`;
+    }
+
+    // Backflow
+    if (match(['backflow','bpat','backflow test','back flow','backflow prevention'])) {
+      return `Roland's is BPAT certified for backflow prevention device installation and testing — including SAWS compliance. If your device failed inspection or is due for annual testing, we can handle it. Call <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> to schedule.`;
+    }
+
+    // Pricing / cost
+    if (match(['how much','cost','price','pricing','expensive','cheap','afford','quote','estimate','ballpark','rough idea','fees','charge'])) {
+      return `I completely understand wanting to know upfront — the honest answer is that pricing depends on what the job actually involves. Roland's team offers free estimates so you get a real number before any work starts. No surprises, no obligation. Want me to get that set up? <a href="#quote" class="text-amber font-semibold underline">Request your free estimate here</a> or call <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a>.`;
+    }
+
+    // Scheduling / availability
+    if (match(['schedule','appointment','book','available','availability','when can','come out','send someone','visit','today','tomorrow','urgent','soon','asap'])) {
+      return `Roland's team is available Monday through Friday, 8AM to 5PM, and same-day service is often available. To lock in a time, <a href="#quote" class="text-amber font-semibold underline">fill out the form above</a> or call us directly at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a>. We respond to all requests within 1 business hour.`;
+    }
+
+    // About the company
+    if (match(['who are you','about roland','how long','since 1982','experience','licensed','master plumber','family','reliable','trustworthy','reviews','rating'])) {
+      return `Roland Gonzales has been serving San Antonio families since 1982 — over 40 years of honest, reliable plumbing. He's a licensed Master Plumber (RMP #11696), BPAT certified, and now works alongside his son. When you call Roland's, you're talking to the plumber who will show up at your door. Rated 4.8 stars across 75 Google reviews.`;
+    }
+
+    // Name inquiry
+    if (match(['who are you','your name','what are you','are you a bot','are you ai','what is flo'])) {
+      return `I'm Flo, your friendly plumbing pro at Roland's Plumbing Service — here to keep your pipes running smoothly! Ask me anything about our services, or I can help you get on the schedule.`;
+    }
+
+    // Fixture / faucet
+    if (match(['faucet','fixture','install','installation','replace','sink','showerhead','shower','tub','bathtub'])) {
+      return `Roland's team handles all kinds of fixture installs and replacements — faucets, toilets, showerheads, sinks, and more. It's one of our most common jobs and we can usually get it done in a single visit. Want to <a href="#quote" class="text-amber font-semibold underline">schedule a time</a>?`;
+    }
+
+    // Greeting / hello
+    if (match(['hello','hi','hey','good morning','good afternoon','good evening','howdy'])) {
+      return `Hey there! I'm Flo — Roland's virtual assistant. I'm here to help with any plumbing questions or get you set up with a service call. What's going on?`;
+    }
+
+    // Default fallback
+    return `That's a great question for Roland's team. For the fastest answer, call us at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or <a href="#quote" class="text-amber font-semibold underline">submit a request</a> and someone will follow up within 1 business hour. What else can I help with?`;
+  }
+
+  function addBotBubble(html) {
+    const body = document.getElementById('chat-body');
+    const el = document.createElement('div');
+    el.className = 'flex items-start gap-2.5';
+    el.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold font-display">F</div>
+      <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
+        <p class="text-navy font-body text-sm" style="line-height:1.6;">${html}</p>
+      </div>`;
+    body.insertBefore(el, document.getElementById('chat-ask-input'));
+    body.scrollTop = body.scrollHeight;
+  }
+
   // Chat send → respond
   document.getElementById('chat-send').addEventListener('click', function() {
     const input = document.getElementById('chat-input-field');
@@ -906,26 +1002,34 @@
     if (!val) return;
 
     const body = document.getElementById('chat-body');
-    // User bubble
     const userBubble = document.createElement('div');
     userBubble.className = 'flex justify-end';
-    userBubble.innerHTML = `<div class="bg-amber text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]"><p class="font-body text-sm" style="line-height:1.6;">${val}</p></div>`;
+    userBubble.innerHTML = `<div class="bg-amber text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]"><p class="font-body text-sm" style="line-height:1.6;">${val.replace(/</g,'&lt;')}</p></div>`;
     body.insertBefore(userBubble, document.getElementById('chat-ask-input'));
-
     input.value = '';
+    body.scrollTop = body.scrollHeight;
 
-    // Bot reply
+    // Typing indicator
+    const typing = document.createElement('div');
+    typing.className = 'flex items-start gap-2.5';
+    typing.id = 'flo-typing';
+    typing.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold font-display">F</div>
+      <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+        <div class="flex gap-1 items-center h-4">
+          <span class="w-2 h-2 bg-navy/30 rounded-full animate-bounce" style="animation-delay:0s"></span>
+          <span class="w-2 h-2 bg-navy/30 rounded-full animate-bounce" style="animation-delay:0.15s"></span>
+          <span class="w-2 h-2 bg-navy/30 rounded-full animate-bounce" style="animation-delay:0.30s"></span>
+        </div>
+      </div>`;
+    body.insertBefore(typing, document.getElementById('chat-ask-input'));
+    body.scrollTop = body.scrollHeight;
+
     setTimeout(() => {
-      const botBubble = document.createElement('div');
-      botBubble.className = 'flex items-start gap-2.5';
-      botBubble.innerHTML = `
-        <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">R</div>
-        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
-          <p class="text-navy font-body text-sm" style="line-height:1.6;">Great question! Pricing depends on the specifics of the job — Roland's team can give you an accurate number after a quick look. The best move is to call us at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or submit a <a href="#quote" class="text-amber font-semibold underline">free estimate request</a> and we'll follow up right away.</p>
-        </div>`;
-      body.insertBefore(botBubble, document.getElementById('chat-ask-input'));
-      body.scrollTop = body.scrollHeight;
-    }, 700);
+      const t = document.getElementById('flo-typing');
+      if (t) t.remove();
+      addBotBubble(floReply(val));
+    }, 900);
   });
 
   // Allow Enter key to send
