@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roland's Plumbing Service | San Antonio, TX — Since 1982</title>
+  <meta name="description" content="San Antonio's trusted family plumber since 1982. Licensed Master Plumber, same-day service, drain cleaning, water heaters, leak detection & more. Call 210-433-0016." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A1F3B',
+            'navy-light': '#112848',
+            amber: '#E8820C',
+            'amber-dark': '#C46A08',
+            'gray-bg': '#F4F6F8',
+          },
+          fontFamily: {
+            display: ['Oswald', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Custom shadow utilities */
+    .shadow-card {
+      box-shadow: 0 2px 8px rgba(10,31,59,0.08), 0 1px 2px rgba(10,31,59,0.04);
+    }
+    .shadow-card-hover {
+      box-shadow: 0 8px 24px rgba(10,31,59,0.14), 0 2px 6px rgba(10,31,59,0.06);
+    }
+    .shadow-chat {
+      box-shadow: 0 8px 32px rgba(10,31,59,0.22), 0 2px 8px rgba(10,31,59,0.10);
+    }
+
+    /* Trust bar item divider */
+    .trust-item + .trust-item {
+      border-left: 1px solid rgba(10,31,59,0.12);
+    }
+
+    /* Form input focus ring */
+    .form-input:focus {
+      outline: none;
+      border-color: #E8820C;
+      box-shadow: 0 0 0 3px rgba(232,130,12,0.15);
+    }
+
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(10,31,59,0.14), 0 2px 6px rgba(10,31,59,0.06);
+    }
+
+    /* Review card */
+    .review-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(10,31,59,0.14);
+    }
+
+    /* CTA button transitions */
+    .btn-amber {
+      transition: background-color 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-amber:hover {
+      background-color: #C46A08;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(232,130,12,0.4);
+    }
+    .btn-amber:active { transform: translateY(0); }
+    .btn-amber:focus-visible { outline: 3px solid #E8820C; outline-offset: 2px; }
+
+    .btn-outline {
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+    }
+    .btn-outline:hover {
+      background-color: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+    .btn-outline:active { transform: translateY(0); }
+    .btn-outline:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
+    /* Header call button */
+    .header-call {
+      transition: background-color 0.18s ease, transform 0.15s ease;
+    }
+    .header-call:hover { background-color: #C46A08; transform: translateY(-1px); }
+    .header-call:active { transform: translateY(0); }
+    .header-call:focus-visible { outline: 3px solid #E8820C; outline-offset: 2px; }
+
+    /* Chat widget */
+    .chat-fab {
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+    }
+    .chat-fab:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 28px rgba(232,130,12,0.45);
+    }
+    .chat-fab:active { transform: scale(0.96); }
+    .chat-fab:focus-visible { outline: 3px solid #E8820C; outline-offset: 3px; }
+
+    .chat-window {
+      transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+      transform-origin: bottom right;
+    }
+    .chat-window.hidden-chat {
+      opacity: 0;
+      transform: scale(0.92) translateY(8px);
+      pointer-events: none;
+    }
+    .chat-window.visible-chat {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: all;
+    }
+
+    .chat-quick-btn {
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .chat-quick-btn:hover {
+      background-color: #E8820C;
+      color: white;
+      border-color: #E8820C;
+    }
+    .chat-quick-btn:focus-visible { outline: 2px solid #E8820C; outline-offset: 2px; }
+
+    /* Header scroll shadow */
+    .header-scrolled {
+      box-shadow: 0 2px 16px rgba(10,31,59,0.25);
+    }
+
+    /* Noise texture overlay for hero */
+    .noise-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px;
+    }
+
+    /* Logo max height */
+    .logo-img { max-height: 52px; width: auto; }
+
+    @media (max-width: 640px) {
+      .logo-img { max-height: 40px; }
+      .trust-item + .trust-item { border-left: none; border-top: 1px solid rgba(10,31,59,0.12); }
+    }
+  </style>
+</head>
+<body class="bg-white text-navy font-body antialiased">
+
+<!-- ═══════════════════════════════════════════
+     STICKY HEADER
+═══════════════════════════════════════════ -->
+<header id="site-header" class="sticky top-0 z-50 bg-navy">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+    <!-- Logo -->
+    <a href="/" aria-label="Roland's Plumbing Service — Home">
+      <img src="brand assets/Untitled+design+(2).webp" alt="Roland's Plumbing Service" class="logo-img" />
+    </a>
+
+    <!-- Right side: tagline (hidden on small mobile) + call button -->
+    <div class="flex items-center gap-4">
+      <span class="hidden sm:block text-white/60 text-sm font-body">San Antonio's Plumber Since 1982</span>
+      <a href="tel:2104330016"
+         class="header-call btn-amber flex items-center gap-2 bg-amber text-white font-display font-semibold text-sm sm:text-base px-3 sm:px-5 py-2.5 rounded-lg whitespace-nowrap"
+         style="min-height:44px; letter-spacing:0.01em;">
+        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/>
+        </svg>
+        <span class="hidden sm:inline">210-433-0016</span>
+        <span class="sm:hidden">Call Now</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════ -->
+<section class="relative flex items-center justify-center overflow-hidden"
+         style="min-height: min(100vh, 720px); background-image: url('brand assets/IMG_8853.webp'); background-size: cover; background-position: center 30%;">
+
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0"
+       style="background: linear-gradient(160deg, rgba(10,31,59,0.72) 0%, rgba(10,31,59,0.88) 60%, rgba(10,31,59,0.95) 100%);"></div>
+
+  <!-- Noise texture -->
+  <div class="absolute inset-0 noise-overlay opacity-60"></div>
+
+  <!-- Amber accent glow -->
+  <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-10"
+       style="background: radial-gradient(circle, #E8820C 0%, transparent 70%); transform: translate(-30%, 30%);"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 py-20 sm:py-24 text-center w-full">
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 bg-amber/20 border border-amber/40 text-amber text-sm font-body font-medium px-4 py-1.5 rounded-full mb-6">
+      <span>⭐</span>
+      <span>4.8 Google Rating · 49 Reviews</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="font-display font-bold text-white leading-tight mb-5"
+        style="letter-spacing: -0.02em; font-size: clamp(1.35rem, 5vw, 4.25rem);">
+      San Antonio's<br />
+      Trusted Plumber<br />
+      <span class="text-amber">— Since 1982.</span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-white/80 text-lg sm:text-xl font-body leading-relaxed mb-10 max-w-2xl mx-auto" style="line-height:1.7;">
+      Fast, reliable service for repairs, installs, and emergencies.<br class="hidden sm:block" />
+      Family-owned. Licensed. Ready when you need us most.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="tel:2104330016"
+         class="btn-amber w-full sm:w-auto bg-amber text-white font-display font-semibold text-lg px-8 py-4 rounded-xl flex items-center justify-center gap-3"
+         style="min-height:56px; letter-spacing:0.01em;">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/>
+        </svg>
+        Call Now
+      </a>
+      <a href="#quote"
+         class="btn-outline w-full sm:w-auto border-2 border-white text-white font-display font-semibold text-lg px-8 py-4 rounded-xl flex items-center justify-center gap-2"
+         style="min-height:56px; letter-spacing:0.01em;">
+        Request a Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="mt-16 flex justify-center">
+      <div class="w-px h-10 bg-white/20 relative overflow-hidden rounded-full">
+        <div class="absolute top-0 left-0 w-full bg-amber/70 animate-bounce"
+             style="height:40%; animation-duration:1.4s;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TRUST BAR
+═══════════════════════════════════════════ -->
+<section class="bg-gray-bg border-b border-navy/10">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-wrap items-stretch divide-x divide-navy/10 sm:flex-nowrap">
+
+      <div class="trust-item flex-1 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-4 py-4 text-center sm:text-left min-w-[45%] sm:min-w-0">
+        <span class="text-2xl" aria-hidden="true">⭐</span>
+        <div>
+          <div class="font-display font-semibold text-navy text-sm" style="letter-spacing:0.01em;">4.8 Google Rating</div>
+          <div class="text-xs text-navy/50 font-body">49 verified reviews</div>
+        </div>
+      </div>
+
+      <div class="trust-item flex-1 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-4 py-4 text-center sm:text-left min-w-[45%] sm:min-w-0">
+        <span class="text-2xl" aria-hidden="true">🔧</span>
+        <div>
+          <div class="font-display font-semibold text-navy text-sm" style="letter-spacing:0.01em;">40+ Years in Business</div>
+          <div class="text-xs text-navy/50 font-body">Serving SA since 1982</div>
+        </div>
+      </div>
+
+      <div class="trust-item flex-1 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-4 py-4 text-center sm:text-left min-w-[45%] sm:min-w-0">
+        <span class="text-2xl" aria-hidden="true">📋</span>
+        <div>
+          <div class="font-display font-semibold text-navy text-sm" style="letter-spacing:0.01em;">Licensed Master Plumber</div>
+          <div class="text-xs text-navy/50 font-body">RMP #11696</div>
+        </div>
+      </div>
+
+      <div class="trust-item flex-1 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-4 py-4 text-center sm:text-left min-w-[45%] sm:min-w-0">
+        <span class="text-2xl" aria-hidden="true">⚡</span>
+        <div>
+          <div class="font-display font-semibold text-navy text-sm" style="letter-spacing:0.01em;">Same-Day Service</div>
+          <div class="text-xs text-navy/50 font-body">Available now</div>
+        </div>
+      </div>
+
+      <div class="trust-item flex-1 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-4 py-4 text-center sm:text-left min-w-[45%] sm:min-w-0">
+        <span class="text-2xl" aria-hidden="true">🏡</span>
+        <div>
+          <div class="font-display font-semibold text-navy text-sm" style="letter-spacing:0.01em;">Locally Owned</div>
+          <div class="text-xs text-navy/50 font-body">San Antonio family</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SERVICES SECTION
+═══════════════════════════════════════════ -->
+<section class="py-20 sm:py-28 bg-white" id="services">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-3">What We Do</p>
+      <h2 class="font-display font-bold text-navy text-3xl sm:text-4xl md:text-5xl" style="letter-spacing:-0.02em;">
+        Our Services
+      </h2>
+      <p class="mt-4 text-navy/60 font-body text-base sm:text-lg max-w-xl mx-auto" style="line-height:1.7;">
+        From minor fixes to major repairs — we handle it all with 40 years of expertise.
+      </p>
+    </div>
+
+    <!-- Service cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-w-0 w-full overflow-hidden">
+
+      <!-- Drain Cleaning -->
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+        <div class="text-4xl mb-4" aria-hidden="true">🚿</div>
+        <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Drain Cleaning</h3>
+        <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Slow drains, clogs, and backups cleared fast with professional equipment.</p>
+      </div>
+
+      <!-- Water Heater -->
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+        <div class="text-4xl mb-4" aria-hidden="true">🔥</div>
+        <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Water Heater Repair & Install</h3>
+        <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Traditional and tankless water heater service, same-day replacement available.</p>
+      </div>
+
+      <!-- Leak Detection -->
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+        <div class="text-4xl mb-4" aria-hidden="true">🔍</div>
+        <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Leak Detection</h3>
+        <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Pinpoint hidden leaks before they become costly damage — walls, slabs & more.</p>
+      </div>
+
+      <!-- Pipe Repair -->
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+        <div class="text-4xl mb-4" aria-hidden="true">🔩</div>
+        <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Pipe Repair</h3>
+        <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Burst, corroded, or damaged pipes repaired and replaced with quality materials.</p>
+      </div>
+
+      <!-- Fixture Install -->
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+        <div class="text-4xl mb-4" aria-hidden="true">🚰</div>
+        <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Fixture Install</h3>
+        <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Faucets, toilets, sinks, and showers installed professionally and guaranteed.</p>
+      </div>
+
+      <!-- Emergency Plumbing -->
+      <div class="service-card bg-navy rounded-2xl p-5 sm:p-7 shadow-card relative min-w-0" style="border-top: 3px solid #E8820C;">
+        <div class="text-4xl mb-4" aria-hidden="true">🚨</div>
+        <h3 class="font-display font-semibold text-white text-xl mb-2" style="letter-spacing:0.01em;">Emergency Plumbing</h3>
+        <p class="text-white/70 font-body text-sm" style="line-height:1.7;">Plumbing crisis at midnight? We respond when you need us most. Call now.</p>
+        <a href="tel:2104330016"
+           class="btn-amber inline-flex items-center gap-2 bg-amber text-white font-body font-semibold text-sm px-4 py-2.5 rounded-lg mt-5">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/></svg>
+          Call 210-433-0016
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     QUOTE REQUEST FORM
+═══════════════════════════════════════════ -->
+<section class="py-20 sm:py-28 bg-gray-bg" id="quote">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+
+    <!-- Section header -->
+    <div class="text-center mb-12">
+      <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-3">Free Estimate</p>
+      <h2 class="font-display font-bold text-navy text-3xl sm:text-4xl md:text-5xl" style="letter-spacing:-0.02em;">
+        Get a Free Quote
+      </h2>
+      <p class="mt-4 text-navy/60 font-body text-base sm:text-lg" style="line-height:1.7;">
+        Tell us what you need and we'll get back to you within 1 business hour.
+      </p>
+    </div>
+
+    <!-- Form card -->
+    <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-card">
+      <form id="quote-form" novalidate>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="name" class="block text-navy font-body font-medium text-sm mb-1.5">Your Name <span class="text-amber">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="Jane Smith"
+                   class="form-input w-full border border-navy/20 rounded-xl px-4 py-3 text-navy font-body text-sm bg-white placeholder-navy/30"
+                   style="transition: border-color 0.15s ease, box-shadow 0.15s ease;" />
+          </div>
+          <div>
+            <label for="phone" class="block text-navy font-body font-medium text-sm mb-1.5">Phone Number <span class="text-amber">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="(210) 555-0100"
+                   class="form-input w-full border border-navy/20 rounded-xl px-4 py-3 text-navy font-body text-sm bg-white placeholder-navy/30"
+                   style="transition: border-color 0.15s ease, box-shadow 0.15s ease;" />
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <label for="email" class="block text-navy font-body font-medium text-sm mb-1.5">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com"
+                 class="form-input w-full border border-navy/20 rounded-xl px-4 py-3 text-navy font-body text-sm bg-white placeholder-navy/30"
+                 style="transition: border-color 0.15s ease, box-shadow 0.15s ease;" />
+        </div>
+
+        <div class="mb-5">
+          <label for="service" class="block text-navy font-body font-medium text-sm mb-1.5">Service Needed <span class="text-amber">*</span></label>
+          <select id="service" name="service" required
+                  class="form-input w-full border border-navy/20 rounded-xl px-4 py-3 text-navy font-body text-sm bg-white appearance-none"
+                  style="transition: border-color 0.15s ease, box-shadow 0.15s ease; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230A1F3B' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px;">
+            <option value="" disabled selected>Select a service…</option>
+            <option value="drain-cleaning">Drain Cleaning</option>
+            <option value="water-heater">Water Heater Repair & Install</option>
+            <option value="leak-detection">Leak Detection</option>
+            <option value="pipe-repair">Pipe Repair</option>
+            <option value="fixture-install">Fixture Install</option>
+            <option value="emergency">Emergency Plumbing</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="mb-7">
+          <label for="description" class="block text-navy font-body font-medium text-sm mb-1.5">Brief Description</label>
+          <textarea id="description" name="description" rows="4"
+                    placeholder="Describe what's going on — e.g. 'kitchen drain backing up for 2 days, also a slow drip under sink…'"
+                    class="form-input w-full border border-navy/20 rounded-xl px-4 py-3 text-navy font-body text-sm bg-white placeholder-navy/30 resize-none"
+                    style="transition: border-color 0.15s ease, box-shadow 0.15s ease;"></textarea>
+        </div>
+
+        <button type="submit"
+                class="btn-amber w-full bg-amber text-white font-display font-semibold text-lg py-4 px-8 rounded-xl"
+                style="min-height:56px; letter-spacing:0.01em;">
+          Send My Request →
+        </button>
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="quote-success" class="hidden text-center py-8">
+        <div class="text-5xl mb-4">✅</div>
+        <h3 class="font-display font-semibold text-navy text-2xl mb-2">Request Sent!</h3>
+        <p class="text-navy/60 font-body" style="line-height:1.7;">
+          Thanks! We'll reach out within 1 business hour.<br />
+          For immediate help, call <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a>.
+        </p>
+      </div>
+
+      <!-- Response time note -->
+      <p class="text-center text-navy/50 font-body text-sm mt-5 italic">
+        We respond to all requests within 1 business hour.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SOCIAL PROOF / REVIEWS
+═══════════════════════════════════════════ -->
+<section class="py-20 sm:py-28 bg-white" id="reviews">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-3">Customer Reviews</p>
+      <h2 class="font-display font-bold text-navy text-3xl sm:text-4xl md:text-5xl" style="letter-spacing:-0.02em;">
+        What Our Customers Say
+      </h2>
+    </div>
+
+    <!-- Review cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+
+      <!-- Review 1 -->
+      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8">
+        <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+          <span class="text-amber text-lg" aria-hidden="true">★★★★★</span>
+        </div>
+        <p class="text-navy font-body text-sm mb-5 italic" style="line-height:1.8;">
+          "Roland's team showed up within the hour. Fixed our burst pipe quickly and cleanly. Wouldn't call anyone else in San Antonio!"
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-bold text-sm">M</div>
+          <div>
+            <div class="font-body font-semibold text-navy text-sm">Maria G.</div>
+            <div class="text-navy/40 text-xs font-body">Verified Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8">
+        <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+          <span class="text-amber text-lg" aria-hidden="true">★★★★★</span>
+        </div>
+        <p class="text-navy font-body text-sm mb-5 italic" style="line-height:1.8;">
+          "Been using Roland's for 15 years. Honest pricing, always on time, and they treat your home with respect. The best in San Antonio, period."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-bold text-sm">J</div>
+          <div>
+            <div class="font-body font-semibold text-navy text-sm">James T.</div>
+            <div class="text-navy/40 text-xs font-body">Verified Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8">
+        <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+          <span class="text-amber text-lg" aria-hidden="true">★★★★★</span>
+        </div>
+        <p class="text-navy font-body text-sm mb-5 italic" style="line-height:1.8;">
+          "Water heater died on a Sunday. They came out same day — no extra charge. Incredibly professional and thorough. Highly recommend!"
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-bold text-sm">S</div>
+          <div>
+            <div class="font-body font-semibold text-navy text-sm">Sandra L.</div>
+            <div class="text-navy/40 text-xs font-body">Verified Google Review</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- See all reviews link -->
+    <div class="text-center">
+      <a href="https://www.google.com/maps/search/Roland's+Plumbing+Service+San+Antonio" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2 text-amber font-body font-semibold text-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber rounded"
+         style="transition: opacity 0.15s ease;">
+        See all 49 reviews on Google
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     ABOUT SECTION
+═══════════════════════════════════════════ -->
+<section class="py-20 sm:py-28 bg-navy" id="about">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Text -->
+      <div>
+        <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-4">About Us</p>
+        <h2 class="font-display font-bold text-white text-3xl sm:text-4xl md:text-5xl mb-6" style="letter-spacing:-0.02em;">
+          A Family Legacy<br />Built on Trust
+        </h2>
+        <div class="space-y-4 text-white/75 font-body text-base" style="line-height:1.8;">
+          <p>
+            Roland Gonzales has been keeping San Antonio homes flowing since 1982 — more than four decades of showing up on time, doing the job right, and treating every customer like a neighbor.
+          </p>
+          <p>
+            What started as a one-man operation has grown into a father-and-son team, with Roland's son now working alongside him to carry on the tradition. Two generations, one commitment: honest work at a fair price.
+          </p>
+          <p>
+            We're not a call center. When you reach us, you're talking to the plumber who will show up at your door.
+          </p>
+        </div>
+
+        <!-- License badge -->
+        <div class="mt-8 inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-5 py-3">
+          <span class="text-2xl" aria-hidden="true">📋</span>
+          <div>
+            <div class="text-white font-body font-semibold text-sm">Licensed Master Plumber</div>
+            <div class="text-white/50 text-xs font-body">Texas RMP #11696</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-8">
+          <a href="tel:2104330016"
+             class="btn-amber inline-flex items-center gap-3 bg-amber text-white font-display font-semibold text-base px-7 py-3.5 rounded-xl"
+             style="min-height:48px; letter-spacing:0.01em;">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/></svg>
+            Call Roland's: 210-433-0016
+          </a>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="relative">
+        <!-- Amber accent frame -->
+        <div class="absolute -inset-3 rounded-3xl opacity-30"
+             style="background: linear-gradient(135deg, #E8820C 0%, transparent 60%);"></div>
+        <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-amber/20 border border-amber/30"></div>
+
+        <img src="brand assets/IMG_20250606_075711.webp"
+             alt="Roland Gonzales and his son — Roland's Plumbing Service"
+             class="relative z-10 w-full rounded-2xl object-cover"
+             style="border: 2px solid rgba(232,130,12,0.35); max-height: 480px; object-position: center top;" />
+
+        <!-- Floating badge -->
+        <div class="absolute z-20 -bottom-5 left-6 bg-white rounded-xl px-4 py-3 shadow-chat">
+          <div class="text-navy font-display font-semibold text-sm">Roland Gonzales</div>
+          <div class="text-navy/50 text-xs font-body">Master Plumber · 40+ Years</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="bg-navy border-t border-white/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-8">
+
+    <!-- Three column grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-12">
+
+      <!-- Col 1: Brand -->
+      <div>
+        <img src="brand assets/Untitled+design+(2).webp" alt="Roland's Plumbing Service" class="logo-img mb-4" />
+        <p class="text-white/60 font-body text-sm" style="line-height:1.7;">
+          Serving San Antonio families since 1982. Licensed, insured, and always available when you need us most.
+        </p>
+        <p class="text-white/40 text-xs font-body mt-3">Texas RMP #11696</p>
+      </div>
+
+      <!-- Col 2: Contact -->
+      <div>
+        <h3 class="font-display font-semibold text-white text-base mb-4 uppercase tracking-wider" style="letter-spacing:0.08em;">Contact</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="tel:2104330016"
+               class="text-amber font-body font-semibold text-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber rounded flex items-center gap-2">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/></svg>
+              210-433-0016
+            </a>
+          </li>
+          <li>
+            <a href="mailto:rolandsplumbing@gmail.com"
+               class="text-white/70 font-body text-sm hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber rounded flex items-center gap-2"
+               style="transition: color 0.15s ease;">
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              rolandsplumbing@gmail.com
+            </a>
+          </li>
+          <li class="flex items-start gap-2 text-white/70 font-body text-sm">
+            <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            330 W. Broadview Dr.<br />San Antonio, TX 78228
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Hours -->
+      <div>
+        <h3 class="font-display font-semibold text-white text-base mb-4 uppercase tracking-wider" style="letter-spacing:0.08em;">Business Hours</h3>
+        <ul class="space-y-2 text-white/70 font-body text-sm" style="line-height:1.7;">
+          <li class="flex justify-between"><span>Monday – Friday</span><span class="text-white font-medium">8:00 AM – 5:00 PM</span></li>
+          <li class="flex justify-between"><span>Saturday</span><span class="text-white/50">By appointment</span></li>
+          <li class="flex justify-between"><span>Sunday</span><span class="text-white/50">Emergency only</span></li>
+        </ul>
+        <div class="mt-5 bg-amber/15 border border-amber/30 rounded-xl px-4 py-3">
+          <p class="text-amber font-body font-semibold text-sm">Emergency calls welcome 24/7</p>
+          <a href="tel:2104330016" class="text-white/80 text-xs font-body hover:text-white" style="transition: color 0.15s ease;">Call 210-433-0016 any time →</a>
+        </div>
+
+        <!-- Google reviews link -->
+        <a href="https://www.google.com/maps/search/Roland's+Plumbing+Service+San+Antonio" target="_blank" rel="noopener"
+           class="mt-5 inline-flex items-center gap-2 text-white/50 font-body text-xs hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber rounded"
+           style="transition: color 0.15s ease;">
+          ⭐ See our Google reviews →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-white/40 font-body text-xs">
+      <span>© 2024 Roland's Plumbing Service Inc. | Texas RMP #11696</span>
+      <a href="https://www.google.com/maps/search/Roland's+Plumbing+Service+San+Antonio" target="_blank" rel="noopener"
+         class="hover:text-white/70" style="transition: color 0.15s ease;">Leave a Google Review →</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     AI CHAT WIDGET
+═══════════════════════════════════════════ -->
+<div class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end gap-3">
+
+  <!-- Chat window -->
+  <div id="chat-window"
+       class="chat-window hidden-chat w-80 sm:w-80 bg-white rounded-2xl overflow-hidden"
+       style="box-shadow: 0 12px 40px rgba(10,31,59,0.22), 0 3px 10px rgba(10,31,59,0.10); max-width: calc(100vw - 32px);"
+       role="dialog" aria-modal="true" aria-label="Roland's Virtual Assistant">
+
+    <!-- Chat header -->
+    <div class="bg-navy px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-amber flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/></svg>
+        </div>
+        <div>
+          <div class="text-white font-body font-semibold text-sm">Roland's Virtual Assistant</div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-white/50 text-xs font-body">Online now</span>
+          </div>
+        </div>
+      </div>
+      <button id="chat-close" aria-label="Close chat"
+              class="text-white/50 hover:text-white rounded-lg p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
+              style="transition: color 0.15s ease;">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Chat body -->
+    <div id="chat-body" class="px-5 py-5 flex flex-col gap-4 bg-gray-bg" style="min-height: 220px;">
+
+      <!-- Greeting bubble -->
+      <div class="flex items-start gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">R</div>
+        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
+          <p class="text-navy font-body text-sm" style="line-height:1.6;">
+            Hi! I'm Roland's virtual assistant — how can I help you today?
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick reply buttons -->
+      <div id="chat-quick-replies" class="flex flex-col gap-2 mt-1">
+        <button class="chat-quick-btn border border-amber/40 text-amber bg-white font-body font-medium text-sm px-4 py-2.5 rounded-xl text-left hover:bg-amber hover:text-white hover:border-amber"
+                data-action="quote" style="transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;">
+          💬 Get a Quote
+        </button>
+        <button class="chat-quick-btn border border-amber/40 text-amber bg-white font-body font-medium text-sm px-4 py-2.5 rounded-xl text-left hover:bg-amber hover:text-white hover:border-amber"
+                data-action="schedule" style="transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;">
+          📅 Schedule a Service
+        </button>
+        <button class="chat-quick-btn border border-amber/40 text-amber bg-white font-body font-medium text-sm px-4 py-2.5 rounded-xl text-left hover:bg-amber hover:text-white hover:border-amber"
+                data-action="ask" style="transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;">
+          ❓ Ask a Question
+        </button>
+      </div>
+
+      <!-- Ask input (hidden until "Ask a Question" clicked) -->
+      <div id="chat-ask-input" class="hidden flex gap-2 mt-1">
+        <input type="text" placeholder="Type your question…"
+               class="flex-1 border border-navy/20 rounded-xl px-3 py-2.5 text-navy font-body text-sm focus:outline-none focus:border-amber"
+               style="font-size:14px;" id="chat-input-field" />
+        <button id="chat-send"
+                class="bg-amber text-white rounded-xl px-3 py-2.5 font-body font-medium text-sm hover:bg-amber-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
+                style="transition: background-color 0.15s ease; flex-shrink:0;">
+          Send
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Chat footer -->
+    <div class="px-5 py-3 border-t border-navy/10 bg-white flex items-center justify-between">
+      <span class="text-navy/40 font-body text-xs">Need immediate help?</span>
+      <a href="tel:2104330016" class="text-amber font-body font-semibold text-xs hover:underline">Call 210-433-0016</a>
+    </div>
+  </div>
+
+  <!-- FAB button -->
+  <button id="chat-fab"
+          class="chat-fab w-16 h-16 bg-amber rounded-full flex items-center justify-center text-white"
+          style="box-shadow: 0 6px 24px rgba(232,130,12,0.45), 0 2px 8px rgba(232,130,12,0.2);"
+          aria-label="Open chat assistant" aria-expanded="false">
+    <svg id="chat-fab-icon" class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+    </svg>
+    <svg id="chat-fab-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+  // ── Header scroll shadow ──────────────────
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('header-scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // ── Quote form ────────────────────────────
+  document.getElementById('quote-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.transition = 'opacity 0.3s ease';
+    this.style.opacity = '0';
+    setTimeout(() => {
+      this.classList.add('hidden');
+      const success = document.getElementById('quote-success');
+      success.classList.remove('hidden');
+      success.style.opacity = '0';
+      success.style.transition = 'opacity 0.3s ease';
+      requestAnimationFrame(() => { success.style.opacity = '1'; });
+    }, 300);
+  });
+
+  // ── Chat widget ───────────────────────────
+  const fab = document.getElementById('chat-fab');
+  const chatWindow = document.getElementById('chat-window');
+  const closeBtn = document.getElementById('chat-close');
+  const fabIcon = document.getElementById('chat-fab-icon');
+  const fabClose = document.getElementById('chat-fab-close');
+  let chatOpen = false;
+
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    if (chatOpen) {
+      chatWindow.classList.remove('hidden-chat');
+      chatWindow.classList.add('visible-chat');
+      fab.setAttribute('aria-expanded', 'true');
+      fabIcon.classList.add('hidden');
+      fabClose.classList.remove('hidden');
+    } else {
+      chatWindow.classList.remove('visible-chat');
+      chatWindow.classList.add('hidden-chat');
+      fab.setAttribute('aria-expanded', 'false');
+      fabIcon.classList.remove('hidden');
+      fabClose.classList.add('hidden');
+    }
+  }
+
+  fab.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+
+  // Quick reply actions
+  document.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const action = this.dataset.action;
+      if (action === 'quote' || action === 'schedule') {
+        toggleChat();
+        setTimeout(() => {
+          document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      } else if (action === 'ask') {
+        document.getElementById('chat-quick-replies').classList.add('hidden');
+        const askInput = document.getElementById('chat-ask-input');
+        askInput.classList.remove('hidden');
+        askInput.classList.add('flex');
+        document.getElementById('chat-input-field').focus();
+      }
+    });
+  });
+
+  // Chat send → respond
+  document.getElementById('chat-send').addEventListener('click', function() {
+    const input = document.getElementById('chat-input-field');
+    const val = input.value.trim();
+    if (!val) return;
+
+    const body = document.getElementById('chat-body');
+    // User bubble
+    const userBubble = document.createElement('div');
+    userBubble.className = 'flex justify-end';
+    userBubble.innerHTML = `<div class="bg-amber text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]"><p class="font-body text-sm" style="line-height:1.6;">${val}</p></div>`;
+    body.insertBefore(userBubble, document.getElementById('chat-ask-input'));
+
+    input.value = '';
+
+    // Bot reply
+    setTimeout(() => {
+      const botBubble = document.createElement('div');
+      botBubble.className = 'flex items-start gap-2.5';
+      botBubble.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">R</div>
+        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
+          <p class="text-navy font-body text-sm" style="line-height:1.6;">Thanks for reaching out! For the fastest response, please call us at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or fill out our <a href="#quote" class="text-amber font-semibold underline">quote form</a>.</p>
+        </div>`;
+      body.insertBefore(botBubble, document.getElementById('chat-ask-input'));
+      body.scrollTop = body.scrollHeight;
+    }, 700);
+  });
+
+  // Allow Enter key to send
+  document.getElementById('chat-input-field').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('chat-send').click();
+  });
+</script>
+
+</body>
+</html>
