@@ -158,6 +158,32 @@
       .logo-img { max-height: 40px; }
       .trust-item + .trust-item { border-left: none; border-top: 1px solid rgba(10,31,59,0.12); }
     }
+
+    /* ── Scroll animations ─────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.reveal-left {
+      transform: translateX(-32px);
+    }
+    .reveal.reveal-right {
+      transform: translateX(32px);
+    }
+    .reveal.reveal-scale {
+      transform: translateY(16px) scale(0.97);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    /* Stagger delay helpers */
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
   </style>
 </head>
 <body class="bg-white text-navy font-body antialiased">
@@ -211,7 +237,7 @@
     <!-- Badge -->
     <div class="inline-flex items-center gap-2 bg-amber/20 border border-amber/40 text-amber text-sm font-body font-medium px-4 py-1.5 rounded-full mb-6">
       <span>⭐</span>
-      <span>4.8 Google Rating · 49 Reviews</span>
+      <span>4.8 Google Rating · 75 Reviews</span>
     </div>
 
     <!-- Headline -->
@@ -270,7 +296,7 @@
         <span class="text-2xl" aria-hidden="true">⭐</span>
         <div>
           <div class="font-display font-semibold text-navy text-sm" style="letter-spacing:0.01em;">4.8 Google Rating</div>
-          <div class="text-xs text-navy/50 font-body">49 verified reviews</div>
+          <div class="text-xs text-navy/50 font-body">75 verified reviews</div>
         </div>
       </div>
 
@@ -318,7 +344,7 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
     <!-- Section header -->
-    <div class="text-center mb-14">
+    <div class="text-center mb-14 reveal">
       <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-3">What We Do</p>
       <h2 class="font-display font-bold text-navy text-3xl sm:text-4xl md:text-5xl" style="letter-spacing:-0.02em;">
         Our Services
@@ -332,42 +358,42 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-w-0 w-full overflow-hidden">
 
       <!-- Drain Cleaning -->
-      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0 reveal reveal-scale reveal-delay-1" style="border-top: 3px solid #E8820C;">
         <div class="text-4xl mb-4" aria-hidden="true">🚿</div>
         <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Drain Cleaning</h3>
         <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Slow drains, clogs, and backups cleared fast with professional equipment.</p>
       </div>
 
       <!-- Water Heater -->
-      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0 reveal reveal-scale reveal-delay-2" style="border-top: 3px solid #E8820C;">
         <div class="text-4xl mb-4" aria-hidden="true">🔥</div>
         <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Water Heater Repair & Install</h3>
         <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Traditional and tankless water heater service, same-day replacement available.</p>
       </div>
 
       <!-- Leak Detection -->
-      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0 reveal reveal-scale reveal-delay-3" style="border-top: 3px solid #E8820C;">
         <div class="text-4xl mb-4" aria-hidden="true">🔍</div>
         <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Leak Detection</h3>
         <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Pinpoint hidden leaks before they become costly damage — walls, slabs & more.</p>
       </div>
 
       <!-- Pipe Repair -->
-      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0 reveal reveal-scale reveal-delay-1" style="border-top: 3px solid #E8820C;">
         <div class="text-4xl mb-4" aria-hidden="true">🔩</div>
         <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Pipe Repair</h3>
         <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Burst, corroded, or damaged pipes repaired and replaced with quality materials.</p>
       </div>
 
       <!-- Fixture Install -->
-      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0" style="border-top: 3px solid #E8820C;">
+      <div class="service-card bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-navy/8 relative min-w-0 reveal reveal-scale reveal-delay-2" style="border-top: 3px solid #E8820C;">
         <div class="text-4xl mb-4" aria-hidden="true">🚰</div>
         <h3 class="font-display font-semibold text-navy text-xl mb-2" style="letter-spacing:0.01em;">Fixture Install</h3>
         <p class="text-navy/60 font-body text-sm" style="line-height:1.7;">Faucets, toilets, sinks, and showers installed professionally and guaranteed.</p>
       </div>
 
       <!-- Emergency Plumbing -->
-      <div class="service-card bg-navy rounded-2xl p-5 sm:p-7 shadow-card relative min-w-0" style="border-top: 3px solid #E8820C;">
+      <div class="service-card bg-navy rounded-2xl p-5 sm:p-7 shadow-card relative min-w-0 reveal reveal-scale reveal-delay-3" style="border-top: 3px solid #E8820C;">
         <div class="text-4xl mb-4" aria-hidden="true">🚨</div>
         <h3 class="font-display font-semibold text-white text-xl mb-2" style="letter-spacing:0.01em;">Emergency Plumbing</h3>
         <p class="text-white/70 font-body text-sm" style="line-height:1.7;">Plumbing crisis at midnight? We respond when you need us most. Call now.</p>
@@ -390,7 +416,7 @@
   <div class="max-w-3xl mx-auto px-4 sm:px-6">
 
     <!-- Section header -->
-    <div class="text-center mb-12">
+    <div class="text-center mb-12 reveal">
       <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-3">Free Estimate</p>
       <h2 class="font-display font-bold text-navy text-3xl sm:text-4xl md:text-5xl" style="letter-spacing:-0.02em;">
         Get a Free Quote
@@ -401,7 +427,7 @@
     </div>
 
     <!-- Form card -->
-    <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-card">
+    <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-card reveal reveal-scale">
       <form id="quote-form" novalidate>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
           <div>
@@ -482,7 +508,7 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
     <!-- Section header -->
-    <div class="text-center mb-14">
+    <div class="text-center mb-14 reveal">
       <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-3">Customer Reviews</p>
       <h2 class="font-display font-bold text-navy text-3xl sm:text-4xl md:text-5xl" style="letter-spacing:-0.02em;">
         What Our Customers Say
@@ -493,7 +519,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 
       <!-- Review 1 -->
-      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8">
+      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8 reveal reveal-delay-1">
         <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
           <span class="text-amber text-lg" aria-hidden="true">★★★★★</span>
         </div>
@@ -510,7 +536,7 @@
       </div>
 
       <!-- Review 2 -->
-      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8">
+      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8 reveal reveal-delay-2">
         <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
           <span class="text-amber text-lg" aria-hidden="true">★★★★★</span>
         </div>
@@ -527,7 +553,7 @@
       </div>
 
       <!-- Review 3 -->
-      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8">
+      <div class="review-card bg-white rounded-2xl p-7 shadow-card border border-navy/8 reveal reveal-delay-3">
         <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
           <span class="text-amber text-lg" aria-hidden="true">★★★★★</span>
         </div>
@@ -550,7 +576,7 @@
       <a href="https://www.google.com/maps/search/Roland's+Plumbing+Service+San+Antonio" target="_blank" rel="noopener"
          class="inline-flex items-center gap-2 text-amber font-body font-semibold text-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber rounded"
          style="transition: opacity 0.15s ease;">
-        See all 49 reviews on Google
+        See all 75 reviews on Google
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
@@ -567,7 +593,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       <!-- Text -->
-      <div>
+      <div class="reveal reveal-left">
         <p class="text-amber font-display font-semibold text-sm uppercase tracking-widest mb-4">About Us</p>
         <h2 class="font-display font-bold text-white text-3xl sm:text-4xl md:text-5xl mb-6" style="letter-spacing:-0.02em;">
           A Family Legacy<br />Built on Trust
@@ -605,7 +631,7 @@
       </div>
 
       <!-- Photo -->
-      <div class="relative">
+      <div class="relative reveal reveal-right">
         <!-- Amber accent frame -->
         <div class="absolute -inset-3 rounded-3xl opacity-30"
              style="background: linear-gradient(135deg, #E8820C 0%, transparent 60%);"></div>
@@ -714,16 +740,14 @@
   <div id="chat-window"
        class="chat-window hidden-chat w-80 sm:w-80 bg-white rounded-2xl overflow-hidden"
        style="box-shadow: 0 12px 40px rgba(10,31,59,0.22), 0 3px 10px rgba(10,31,59,0.10); max-width: calc(100vw - 32px);"
-       role="dialog" aria-modal="true" aria-label="Roland's Virtual Assistant">
+       role="dialog" aria-modal="true" aria-label="Flo — Roland's Virtual Assistant">
 
     <!-- Chat header -->
     <div class="bg-navy px-5 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-amber flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/></svg>
-        </div>
+        <div class="w-9 h-9 rounded-full bg-amber flex items-center justify-center flex-shrink-0 font-display font-bold text-white text-base">F</div>
         <div>
-          <div class="text-white font-body font-semibold text-sm">Roland's Virtual Assistant</div>
+          <div class="text-white font-body font-semibold text-sm">Flo — Roland's Assistant</div>
           <div class="flex items-center gap-1.5">
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
             <span class="text-white/50 text-xs font-body">Online now</span>
@@ -745,7 +769,7 @@
         <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">R</div>
         <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
           <p class="text-navy font-body text-sm" style="line-height:1.6;">
-            Hi! I'm Roland's virtual assistant — how can I help you today?
+            Hi! I'm Flo, Roland's virtual assistant. How can I help you today?
           </p>
         </div>
       </div>
@@ -897,7 +921,7 @@
       botBubble.innerHTML = `
         <div class="w-8 h-8 rounded-full bg-amber flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">R</div>
         <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
-          <p class="text-navy font-body text-sm" style="line-height:1.6;">Thanks for reaching out! For the fastest response, please call us at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or fill out our <a href="#quote" class="text-amber font-semibold underline">quote form</a>.</p>
+          <p class="text-navy font-body text-sm" style="line-height:1.6;">Great question! Pricing depends on the specifics of the job — Roland's team can give you an accurate number after a quick look. The best move is to call us at <a href="tel:2104330016" class="text-amber font-semibold">210-433-0016</a> or submit a <a href="#quote" class="text-amber font-semibold underline">free estimate request</a> and we'll follow up right away.</p>
         </div>`;
       body.insertBefore(botBubble, document.getElementById('chat-ask-input'));
       body.scrollTop = body.scrollHeight;
@@ -908,6 +932,18 @@
   document.getElementById('chat-input-field').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') document.getElementById('chat-send').click();
   });
+
+  // ── Scroll reveal ─────────────────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); // fire once
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
