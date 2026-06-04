@@ -32,6 +32,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; }
     p, h1, h2, h3, h4, span { overflow-wrap: break-word; }
+    [aria-hidden="true"] { pointer-events: none !important; }
 
     /* Custom shadow utilities */
     .shadow-card {
@@ -223,15 +224,15 @@
          style="min-height: min(100vh, 720px); background-image: url('brand assets/IMG_8853.webp'); background-size: cover; background-position: center 30%;">
 
   <!-- Gradient overlay -->
-  <div class="absolute inset-0"
-       style="background: linear-gradient(160deg, rgba(10,31,59,0.72) 0%, rgba(10,31,59,0.88) 60%, rgba(10,31,59,0.95) 100%);"></div>
+  <div class="absolute inset-0" aria-hidden="true"
+       style="background: linear-gradient(160deg, rgba(10,31,59,0.72) 0%, rgba(10,31,59,0.88) 60%, rgba(10,31,59,0.95) 100%); pointer-events: none;"></div>
 
   <!-- Noise texture -->
-  <div class="absolute inset-0 noise-overlay opacity-60"></div>
+  <div class="absolute inset-0 noise-overlay opacity-60" aria-hidden="true" style="pointer-events: none;"></div>
 
   <!-- Amber accent glow -->
-  <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-10"
-       style="background: radial-gradient(circle, #E8820C 0%, transparent 70%); transform: translate(-30%, 30%);"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-10" aria-hidden="true"
+       style="background: radial-gradient(circle, #E8820C 0%, transparent 70%); transform: translate(-30%, 30%); pointer-events: none;"></div>
 
   <!-- Content -->
   <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 py-20 sm:py-24 w-full" style="text-align:center;">
@@ -634,9 +635,9 @@
       <!-- Photo -->
       <div class="relative reveal reveal-right">
         <!-- Amber accent frame -->
-        <div class="absolute -inset-3 rounded-3xl opacity-30"
-             style="background: linear-gradient(135deg, #E8820C 0%, transparent 60%);"></div>
-        <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-amber/20 border border-amber/30"></div>
+        <div class="absolute -inset-3 rounded-3xl opacity-30" aria-hidden="true"
+             style="background: linear-gradient(135deg, #E8820C 0%, transparent 60%); pointer-events: none;"></div>
+        <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-amber/20 border border-amber/30" aria-hidden="true" style="pointer-events: none;"></div>
 
         <img src="brand assets/IMG_20250606_075711.webp"
              alt="Roland Gonzales — Roland's Plumbing Service"
