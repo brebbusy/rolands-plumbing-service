@@ -107,6 +107,7 @@
     /* Chat widget */
     .chat-fab {
       transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+      pointer-events: auto;
     }
     .chat-fab:hover {
       transform: scale(1.08);
@@ -127,7 +128,7 @@
     .chat-window.visible-chat {
       opacity: 1;
       transform: scale(1) translateY(0);
-      pointer-events: all;
+      pointer-events: auto;
     }
 
     .chat-quick-btn {
@@ -727,7 +728,7 @@
 <!-- ═══════════════════════════════════════════
      AI CHAT WIDGET
 ═══════════════════════════════════════════ -->
-<div class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end gap-3">
+<div class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end gap-3" style="pointer-events: none;">
 
   <!-- Chat window -->
   <div id="chat-window"
